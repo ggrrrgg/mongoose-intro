@@ -2,23 +2,24 @@ require('dotenv').config();
 
 const mongoose = require('mongoose');
 const { databaseConnect } = require('./database');
+const { Cat } = require('./models/CatModels');
 
 databaseConnect().then(async () => {
 
 	console.log("Creating seed data!");
 
-	const Cat = mongoose.model('Cat', {
-		name: String,
-		colour: String, 
-		breed: String,
-		favouritePlacesToSit: [String],
-		gender: String,
-		age: Number, // integer 
-		safeToPet: Boolean,
-		weightKg: Number, // float / decimal 
-		favouriteToys: [String],
-		photos: [String]
-	});
+	// const Cat = mongoose.model('Cat', {
+	// 	name: String,
+	// 	colour: String, 
+	// 	breed: String,
+	// 	favouritePlacesToSit: [String],
+	// 	gender: String,
+	// 	age: Number, // integer 
+	// 	safeToPet: Boolean,
+	// 	weightKg: Number, // float / decimal 
+	// 	favouriteToys: [String],
+	// 	photos: [String]
+	// });
 
     let newLina = new Cat({
 		name: "Lina",
@@ -28,13 +29,13 @@ databaseConnect().then(async () => {
 		gender: "female",
 		age: 2,
 		safeToPet: true,
-		weight: 5.5,
+		weightKg: 5.5,
 		favouriteToys: ["Zach's keyboard", "coffee mugs", "string"],
 		photos: ["http://google.com"]
 	})
 
     await newLina.save().then(() => {
-		console.log("Lina is in the DB!");
+		console.log(`${newLina.name} is in the DB`);
 	});
 
 
