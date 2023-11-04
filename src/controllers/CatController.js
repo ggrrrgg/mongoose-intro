@@ -44,12 +44,14 @@ router.get("/multiple/breed/:breedToFilterBy", async (request, response) => {
 
 // Create a new cat in the DB
 router.post("/", async (request, response) => {
-	let result = await Cat.create(request.body);
+	// let result = await Cat.create(request.body);
 
-	response.json({
-		cat: result
-	});
-
+	// response.json({
+	// 	cat: result
+	// });
+	
+	// Error handling via promise catch
+	let result = await Cat.create(request.body).catch(error => {return error});
 });
 
 // Update an existing cat in the DB.

@@ -11,8 +11,14 @@ app.get("/", (request, response) => {
 	});
 });
 
-const CatRouter = require('./controllers/CatController')
+const { User } = require('./models/UserModel');
+
+
+const CatRouter = require('./controllers/CatController');
 app.use('/cats', CatRouter);
+
+const SightingRouter = require('./controllers/SightingController');
+app.use('/sightings', SightingRouter);
 
 module.exports = {
 	app
